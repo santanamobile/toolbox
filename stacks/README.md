@@ -3,6 +3,7 @@
 Lista de stacks:
 
 - Portainer
+- Grafana
 
 ## Deploy
 
