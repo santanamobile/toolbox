@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  portainer:
+    hostname: portainer
+    container_name: portainer
+    image: portainer/portainer-ce:latest
+    ports:
+      - 9443:9443
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/localtime:/etc/localtime:ro
+      - portainer-storage:/data
+    restart: unless-stopped
+
+volumes:
+  portainer-storage: {}
