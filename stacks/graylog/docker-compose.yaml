@@ -1,0 +1,70 @@
+---
+version: '3'
+
+services:
+
+  mongo:
+    image: mongo:3
+    container_name: mongodb
+    hostname: mongodb
+    networks:
+      - graylog
+    restart: unless-stopped
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.8.5
+    container_name: elasticsearch
+    hostname: elasticsearch
+    environment:
+      - http.host=0.0.0.0
+      - transport.host=localhost
+      - network.host=0.0.0.0
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    deploy:
+      resources:
+        limits:
+          memory: 1g
+    networks:
+      - graylog
+    restart: unless-stopped
+
+  graylog:
+    image: graylog/graylog:3.2
+    container_name: graylog
+    hostname: graylog
+    environment:
+      # CHANGE ME (must be at least 16 characters)!
+      - GRAYLOG_PASSWORD_SECRET=someultrasecurepass
+      # Password: admin
+      # You can generate a password here: https://codebeautify.org/sha2-hash-generator
+      - GRAYLOG_ROOT_PASSWORD_SHA2=8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+      - GRAYLOG_HTTP_EXTERNAL_URI=http://127.0.0.1:9000/
+    networks:
+      - graylog
+    depends_on:
+      mongo:
+        condition: "service_started"
+      elasticsearch:
+        condition: "service_started"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      # Graylog web interface and REST API
+      - 9000:9000
+      # Syslog TCP
+      - 1514:1514
+      # Syslog UDP
+      - 1514:1514/udp
+      # GELF TCP
+      - 12201:12201
+      # GELF UDP
+      - 12201:12201/udp
+    restart: unless-stopped
+
+networks:
+  graylog:
+    driver: bridge

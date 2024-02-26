@@ -5,6 +5,7 @@ Lista de stacks:
 - Portainer
 - Grafana
 - TICK (Telegraf, Influxdb, Chronograf e Kapacitor)
+- Graylog
 
 ## Deploy
 
