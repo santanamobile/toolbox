@@ -4,15 +4,18 @@ version: '3'
 services:
 
   mongo:
-    image: mongo:3
+    image: mongo:3.6
     container_name: mongodb
     hostname: mongodb
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - mongodb-storage:/data/db
     networks:
       - graylog
     restart: unless-stopped
 
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.8.5
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
     container_name: elasticsearch
     hostname: elasticsearch
     environment:
@@ -28,12 +31,15 @@ services:
       resources:
         limits:
           memory: 1g
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - elasticsearch-storage:/usr/share/elasticsearch/data
     networks:
       - graylog
     restart: unless-stopped
 
   graylog:
-    image: graylog/graylog:3.2
+    image: graylog/graylog:4.3
     container_name: graylog
     hostname: graylog
     environment:
@@ -52,9 +58,10 @@ services:
         condition: "service_started"
     volumes:
       - /etc/localtime:/etc/localtime:ro
+      - graylog-storage:/usr/share/graylog/data
     ports:
       # Graylog web interface and REST API
-      - 9000:9000
+      - 9001:9000
       # Syslog TCP
       - 1514:1514
       # Syslog UDP
@@ -68,3 +75,8 @@ services:
 networks:
   graylog:
     driver: bridge
+
+volumes:
+  mongodb-storage:
+  elasticsearch-storage:
+  graylog-storage:
