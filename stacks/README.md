@@ -2,10 +2,11 @@
 
 Lista de stacks:
 
-- Portainer
 - Grafana
-- TICK (Telegraf, Influxdb, Chronograf e Kapacitor)
 - Graylog
+- Portainer
+- Sonarqube
+- TICK (Telegraf, Influxdb, Chronograf e Kapacitor)
 
 ## Deploy
 
