@@ -14,4 +14,4 @@ Em /etc/sysctl.conf é preciso alterar o parâmetro max_map_count para: 262144
 
 Caso esteja planejando realizar um upgrade de versão do graylog, é importante verificar a matriz de compatibilidade e seus requisitos.
 
-[Requisitos]<https://go2docs.graylog.org/5-0/planning_your_deployment/planning_your_upgrade_to_opensearch.htm>
+[Requisitos](https://go2docs.graylog.org/5-0/planning_your_deployment/planning_your_upgrade_to_opensearch.htm)
