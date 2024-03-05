@@ -1,0 +1,3 @@
+# GitLab Community Edition
+
+O GitLab Community Edition é uma plataforma de gerenciamento de código-fonte baseada em Git, oferecendo recursos de controle de versão, rastreamento de problemas, CI/CD (Integração Contínua/Entrega Contínua), e colaboração em um único ambiente. Ele permite que equipes colaborem, versionem e automatizem o desenvolvimento de software. Os usuários podem criar repositórios, rastrear problemas, realizar revisões de código e utilizar pipelines de CI/CD para automatizar testes e implantações. O GitLab CE é uma versão gratuita e de código aberto, adequada para pequenas e médias equipes de desenvolvimento.

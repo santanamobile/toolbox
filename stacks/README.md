@@ -2,6 +2,7 @@
 
 Lista de stacks:
 
+- Gitlab
 - Grafana
 - Graylog
 - Portainer
