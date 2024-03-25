@@ -1,0 +1,26 @@
+---
+version: "3"
+
+services:
+  vscode:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: vscode-server
+    hostname: vscode
+    environment: 
+      - DOCKER_USER=coder
+      - PUID=2123
+      - PGID=2123
+    ports:
+      - 8443:8443
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - vscode-config:/config
+      - vscode-project:/home/coder/workspaces
+      - vscode-storage:/home/coder/.local
+      - /var/run/docker.sock:/var/run/docker.sock:rw
+    restart: unless-stopped
+
+volumes:
+  vscode-project: {}
+  vscode-storage: {}
+  vscode-config: {}
