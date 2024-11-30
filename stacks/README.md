@@ -5,6 +5,7 @@ Lista de stacks:
 - Gitlab
 - Grafana
 - Graylog
+- OpenSpeedTest
 - Portainer
 - Sonarqube
 - TICK (Telegraf, Influxdb, Chronograf e Kapacitor)
