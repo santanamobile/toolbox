@@ -2,13 +2,17 @@
 
 Conjunto de ferramentas para provisionar um ambiente de desenvolvimento/testes em estação de trabalho.
 
-O ansible deve ser instalado manualmente para o provisionamento do ambiente:
+O ansible deve ser instalado manualmente para a execução do playbook.
 
-    sudo apt install ansible -y
+```bash
+sudo apt install ansible -y
+```
 
 A seguir execute o playbook com:
 
-    ansible -i playbook.yaml
+```bash
+ansible-playbook playbook.yaml
+```
 
 Após a execução do playbook serão instalados os recursos:
 
@@ -17,9 +21,7 @@ Após a execução do playbook serão instalados os recursos:
 
 ## Docker
 
-Após a instalação do docker é preciso configurar as permissões.
-
-    sudo usermod -aG docker $(whoami)
+Após a instalação do docker o usuário é adicionado ao grupo docker.
 
 ## Disclaimer
 
